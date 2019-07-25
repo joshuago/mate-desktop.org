@@ -76,7 +76,7 @@ the following:
   filename but ending with the short country code (see below). For example, if
   you want to translate the home page to German you would do the following:
 
-    cp pages/index.md pages/index.md.de
+    cp pages/index.md pages/index.de.md
 
   * Translate the metadata as well as the content. However, **do not change the date format**.
 
@@ -85,24 +85,55 @@ the following:
 
 Nikola supported languages are, the one in bold are already in the site navigation::
 
-  * `bg`     Bulgarian
-  * `ca`     Catalan
-  * `de`     **German**
-  * `el`     Greek
-  * `en`     **English**
-  * `eo`     Esperanto
-  * `es`     **Spanish**
-  * `fa`     Persian
-  * `fr`     **French**
-  * `hr`     Croatian
-  * `it`     **Italian**
-  * `jp`     Japanese
-  * `nl`     **Dutch**
-  * `pt_br`  Portuguese (Brasil)
-  * `pl`     Polish
-  * `ru`     Russian
-  * `tr_tr`  **Turkish** (Turkey)
-  * `zh_cn`  Chinese (Simplified)
+  * `ar`        Arabic
+  * `az`        Azerbaijani
+  * `bg`        Bulgarian
+  * `bs`        Bosnian
+  * `ca`        Catalan
+  * `cs`        Czech [ALTERNATIVELY cz]
+  * `da`        Danish
+  * `de`        **German**
+  * `el`        **Greek** [NOT gr]
+  * `en`        **English**
+  * `eo`        Esperanto
+  * `es`        **Spanish**
+  * `et`        Estonian
+  * `eu`        Basque
+  * `fa`        Persian
+  * `fi`        Finnish
+  * `fr`        **French**
+  * `gl`        Galician
+  * `he`        Hebrew
+  * `hi`        Hindi
+  * `hr`        Croatian
+  * `hu`        Hungarian
+  * `id`        **Indonesian**
+  * `it`        **Italian**
+  * `ja`        Japanese [NOT jp]
+  * `ko`        Korean
+  * `lt`        Lithuanian
+  * `ml`        Malayalam
+  * `nb`        Norwegian (Bokmål)
+  * `nl`        Dutch
+  * `pa`        Punjabi
+  * `pl`        **Polish**
+  * `pt`        **Portuguese**
+  * `pt_br`     Portuguese (Brazil)
+  * `ru`        Russian
+  * `sk`        Slovak
+  * `sl`        Slovene
+  * `sq`        Albanian
+  * `sr`        Serbian (Cyrillic)
+  * `sr_latin`  Serbian (Latin)
+  * `sv`        Swedish
+  * `te`        Telugu
+  * `th`        Thai
+  * `tr`        **Turkish** [NOT tr_TR]
+  * `uk`        Ukrainian
+  * `ur`        Urdu
+  * `vi`        Vietnamese
+  * `zh_cn`     **Chinese (Simplified)**
+  * `zh_tw`     **Chinese (Traditional)**
 
 ## Markdown vs. ReStructured Text
 
@@ -126,142 +157,65 @@ rules](http://daringfireball.net/projects/markdown/syntax) of the original
 See the Nikola [reStructuredText Primer](http://getnikola.com/quickstart.html) and
 the [reStructured Text extensions](http://getnikola.com/handbook.html#restructuredtext-extensions).
 
-# The migration
+# Creating a Nikola stack
 
-For the benefit of the MATE developers and admins, here is a rundown of how the
-WordPress site was migrated to Nikola.
+For the MATE Desktop core team, if you need to create a Nikola stack
+for testing/deployment the installation process is documentation
+for Ubuntu (also works in Debian Jessie) here:
 
-## Python 2.7
+  * https://flexion.org/posts/2015-11-installing-nikola-on-ubuntu/
 
-Nikola is being powered by Python 2.7 and some additional packages were required
-on the server.
+## Fedora, Debian, Ubuntu
 
-    sudo apt-get install python2.7-dev libfreetype6-dev libjpeg8-dev libxslt1-dev libxml2-dev libyaml-dev
+### STEP 1: Install the following packages on your system
 
-### What are these requirements for?
+On Ubuntu/Debian:
+```
+sudo apt-get install python3 python3-pip asciidoctor virtualenv
+```
 
-  * `python2.7-dev` provides the header files for Python 2.7 so that Python modules 
-  with C extensions can be built.
+On Fedora:
+```
+sudo dnf install python3 python3-pip asciidoctor virtualenv
+```
 
-The following are required to build `pillow`, the Python imaging library.
+### STEP 2: Create a new virtualenv named nikola in ~/MyVirtualEnvs folder
+```
+mkdir -p ~/MyVirtualEnvs
+cd ~/MyVirtualEnvs
+virtualenv -p $(which python3) nikola
+```
 
-  * `libjpeg8-dev`
-  * `libfreetype6-dev`
+### STEP 3: Activate the virtualenv created in STEP 2
+```
+source nikola/bin/activate
+```
 
-The following are required to build `lxml`, a Python XML library.
+### STEP 4: Install the following python packages in the virtualenv
+```
+(nikola) pip install --upgrade pip
+(nikola) pip install --upgrade "Nikola[extras]"
+(nikola) pip install --upgrade python-Levenshtein
+(nikola) pip install --upgrade pathlib
+(nikola) pip install --upgrade beautifulsoup4
+```
+(nikola) is part of your shell prompt for the virtualenv named nikola, not part of the command.
 
-  * `libxml2-dev`
-  * `libxslt1-dev`
+### STEP 5: Build and test the web site
+```
+(nikola) cd ~/mate-desktop.org
+(nikola) nikola build -c
+(nikola) nikola serve
+```
 
-The following are required to build `python-coveralls`.
+### STEP 6: Open the site in a web browser
+Open the URI displayed in the previous step using your favorite web browser.
 
-  * `libyaml-dev`
-
-### virtualenv
-
-[`virtualenv`](http://www.virtualenv.org/en/latest/) is used to create
-sandboxed Python environments, so you don't pollute the system Python. This is
-how the `virtualenv` for Nikola was created.
-
-    cd ~
-    curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.10.1.tar.gz
-    tar xvfz virtualenv-1.10.1.tar.gz
-    cd virtualenv-1.10.1
-    sudo python setup.py install
-
-### Install Nikola 6.2.1
-
-Create an environment for Nikola.
-
-    mkdir ~/PythonEnvs
-    virtualenv -p python2.7 ~/PythonEnvs/nikola-621
-
-Activate the environment.
-
-    source ~/PythonEnvs/nikola-621/bin/activate
-
-Download Nikola 6.2.1
-
-    mkdir -p ${VIRTUAL_ENV}/src
-    cd ${VIRTUAL_ENV}/src
-    wget https://github.com/getnikola/nikola/archive/v6.2.1.tar.gz -O nikola-621.tar.gz
-    tar zxvf nikola-621.tar.gz
-    cd nikola-6.2.1
-
-Install the Nikola requirements.
-
-    pip install cython
-    pip install -r requirements-full.txt
-
-Actually install nikola.
-
-    python setup.py install
-
-## Migrate WordPress to Nikola
-
-Export the WordPress content.
-
-  * `Tools -> Export -> All Content`
-
-Make sure the Nikola environment is activated.
-
-    source ~/PythonEnvs/nikola-621/bin/activate
-
-Clone the mate-desktop.org Git repository.
-
-    cd ~/Websites
-    git clone https://github.com/mate-desktop/mate-desktop.org
-
-Run the migration.
-
-    nikola import_wordpress ~/Downloads/mate.wordpress.2013-10-23.xml ~/Migration
-
-The only interesting log entries form the migration were:
-
-    [2013-10-23T15:26:02Z] WARNING: import_wordpress: Not going to import "Wiki" because it seems to contain no content.
-    [2013-10-23T15:26:02Z] WARNING: import_wordpress: Not going to import "Forum" because it seems to contain no content.
-
-`rsync` the migrated files to the git repository.
-
-    rsync -av ~/Migration/ ~/Websites/mate-desktop.org/
-
-Install [html2text](https://github.com/aaronsw/html2text).
-
-    pip install https://github.com/aaronsw/html2text/archive/master.zip
-
-Convert the WordPress `.wp` faux HTML files to
-[Markdown](http://daringfireball.net/projects/markdown/) and correct the image
-links.
-
-    cd ~/Websites/mate-desktop.org/posts
-    for FILE in *.wp; do html2text ${FILE} > `basename ${FILE} .wp`.md; done
-    for FILE in *.md; do sed -i 's/\/martin\/Migration//g' ${FILE}; done
-    rm *.wp
-    cd ~/Websites/mate-desktop.org/stories
-    for FILE in *.wp; do html2text ${FILE} > `basename ${FILE} .wp`.md; done
-    for FILE in *.md; do sed -i 's/\/martin\/Migration//g' ${FILE}; done
-    rm *.wp
-
-The metadata and content were merged using `scripts/merge_meta.sh`.
-
-# The clean up
-
-At this point you have a basic Nikola site that preserves all the content (but
-not the comments) from the WordPress site. Now the hacking begins.
-
-# Building and deploying the site
-
-When the site cleanup is complete, Nikola will be integrated with Git so that
-any new pushes to the mate-desktop.org Git repository will automatically
-trigger a Nikola build and deploy.
-
-In the meantime, here is how Nikola can be run manually. This assumes you are
-running as me on the server, however.
-
-    source ~/PythonEnvs/nikola-621/bin/activate
-    cd ~/Websites/mate-desktop.org
-    nikola build
-    nikola deploy
+### STEP 7: Exit virtualenv
+Press ^C to close nikola serve
+```
+(nikola) deactivate
+```
 
 # TODO
 

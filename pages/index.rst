@@ -6,21 +6,17 @@
 .. slug: index
 .. pretty_url: False
 
-MATE is a fork of GNOME 2. It provides an intuitive and attractive desktop
-environment using traditional metaphors for Linux and other Unix-like
-operating systems.
+The MATE Desktop Environment is the continuation of GNOME 2. It provides an intuitive and attractive desktop 
+environment using traditional metaphors for Linux and other Unix-like operating systems.
 
-MATE is under active development to add support for new technologies while
-preserving a traditional desktop experience. See the `Roadmap <http://wiki.mate-desktop.org/roadmap>`_ or
-`Stefano's presentation at the OpenSUSE conference </blog/2013-07-21-stefano-presents-at-opensuse-conference/>`_
-to find out more about how MATE has evolved and what is planned for the
-future. The `MATE Manifesto <http://wiki.mate-desktop.org/board:manifesto>`_
-outlines some of the principles that guide the project.
+MATE is under active development to add support for new technologies while preserving a traditional desktop 
+experience. See the `Roadmap <http://wiki.mate-desktop.org/roadmap>`_. The `MATE Manifesto 
+<http://wiki.mate-desktop.org/board:manifesto>`_ outlines some of the principles that guide the project.
 
 .. image:: /screens/screenshot.jpg
     :align: center
 
-You can find more `screenshots of MATE <gallery/1.6/>`_ in our `gallery <gallery/>`_.
+You can find more `screenshots of MATE <gallery/1.22/>`_.
 
 ----
 News
@@ -40,29 +36,43 @@ Which distributions support MATE?
 
 MATE is available via the **official** repositories for the following Linux distributions:
 
-* `Fedora <http://www.fedoraproject.org>`_
-* `Linux Mint <http://linuxmint.com>`_
-* `Mageia <https://www.mageia.org/en/>`_
-* `openSUSE <http://www.opensuse.org>`_
-* `PCLinuxOS <http://www.pclinuxos.com/get-pclinuxos/mate/>`_
-* `Point Linux <http://pointlinux.org>`_
-* `Sabayon <http://www.sabayon.org>`_
-* `Salix <http://www.salixos.org>`_
-
-MATE is available via *unofficial* repositories for the following Linux distributions, but
-inclusion in their official repositories is planned:
-
+* `Alpine Linux <https://www.alpinelinux.org/>`_
+* `Antergos <https://antergos.com/>`_
+* `AOSC <https://aosc.io/>`_
 * `Arch Linux <http://www.archlinux.org>`_
 * `Debian <http://www.debian.org>`_
+* `Fedora <http://www.fedoraproject.org>`_
 * `Gentoo <http://www.gentoo.org>`_
-* `Slackware <http://www.slackware.com>`_
+* `GNU Guix and GNU GuixSD <https://gnu.org/s/guix>`_
+* `Hamara Linux <http://hamaralinux.org/>`_
+* `Linux Mint <http://linuxmint.com>`_
+* `Mageia <https://www.mageia.org/en/>`_
+* `Manjaro <http://manjaro.org/>`_
+* `openSUSE <http://www.opensuse.org>`_
+* `Parrot Security OS <http://www.parrotsec.org/>`_
+* `PCLinuxOS <http://www.pclinuxos.com/get-pclinuxos/mate/>`_
+* `PLD Linux <https://www.pld-linux.org/>`_
+* `Point Linux <http://pointlinux.org/>`_
+* `Sabayon <http://www.sabayon.org>`_
+* `Salix <http://www.salixos.org>`_
+* `Solus <https://getsol.us/>`_
+* `Trisquel GNU/Linux <https://trisquel.info/>`_
 * `Ubuntu <http://www.ubuntu.com>`_
+* `Ubuntu MATE <http://www.ubuntu-mate.org>`_
+* `Uruk GNU/Linux <https://urukproject.org/dist/>`_
+* `Vector Linux <http://vectorlinux.com>`_
+* `Void Linux <http://www.voidlinux.eu/>`_
 
-Maybe you prefer \*BSD?
+MATE is available via *unofficial* repositories for the following Linux distributions:
+
+* `Slackware <http://www.slackware.com>`_
+
+Maybe you prefer UNIX?
 
 * `GhostBSD <http://ghostbsd.org>`_
-* `PC-BSD <http://www.pcbsd.org>`_
 * `FreeBSD <http://freebsd.org>`_
+* `OpenIndiana <https://www.openindiana.org>`_
+* `TrueOS <https://www.trueos.org/>`_
 
 You can also `query DistroWatch.com for all the distributions that support MATE <http://distrowatch.org/search.php?desktop=MATE#distrosearch>`_.
 
@@ -152,5 +162,5 @@ The name *"MATE"*, pronounced *Ma-Tay*, comes from `yerba maté
 subtropical South America. Its leaves contain caffeine and are used to make
 infusions and a beverage called mate.
 
-.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Ilex_paraguariensis_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-074.jpg/220px-Ilex_paraguariensis_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-074.jpg
+.. image:: /assets/img/mate/yerba.jpg
     :align: center
